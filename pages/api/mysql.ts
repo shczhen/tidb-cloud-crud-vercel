@@ -23,5 +23,6 @@ export default async function handler(
   await connection.end();
 
   // Return the results
-  return results;
+  // return results;
+  res.status(200).json({ data: results });
 }
