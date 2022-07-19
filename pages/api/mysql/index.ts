@@ -11,18 +11,18 @@ export const connection = serverlessMysql({
   },
 });
 
-// // Main handler function
-// export default async function handler(
-//   req: NextApiRequest,
-//   res: NextApiResponse<any>
-// ) {
-//   // Run your query
-//   let results = await connection.query("describe expresses;");
-
-//   // Run clean up function
-//   await connection.end();
-
-//   // Return the results
-//   // return results;
-//   res.status(200).json({ data: results });
-// }
+// Main handler function
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<any>
+) {
+  try {
+    const results = await connection.query("show tables;");
+    res.status(200).json({ data: results });
+  } catch (error) {
+    res.status(500).send(error);
+  } finally {
+    // Run clean up function
+    await connection.end();
+  }
+}

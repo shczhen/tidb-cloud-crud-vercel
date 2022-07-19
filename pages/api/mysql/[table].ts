@@ -1,4 +1,4 @@
-import { connection } from "./_index";
+import { connection } from "./index";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 // Main handler function
@@ -9,7 +9,7 @@ export default async function handler(
   const { table: tableName } = req.query;
 
   try {
-    const results = await connection.query(`describe ?`, [tableName]);
+    const results = await connection.query(`describe ${tableName}`);
     res.status(200).json({ data: results });
   } catch (error) {
     res.status(500).send(error);
