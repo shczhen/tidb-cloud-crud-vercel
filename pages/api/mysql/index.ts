@@ -4,8 +4,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export const connection = serverlessMysql({
   config: {
     host: process.env.TIDB_URI,
-    database: (process.env.TIDB_DB as string) || "test",
-    user: (process.env.TIDB_USER as string) || "root",
+    database: process.env.TIDB_DB || "test",
+    user: process.env.TIDB_USER || "root",
     password: process.env.TIDB_PASSWD,
     port: parseInt(process.env.TIDB_DB || "4000"),
   },
